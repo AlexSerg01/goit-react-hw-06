@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import css from "./SearchBox.module.css";
 import { changeFilter } from "../../redux/filterSlice";
-import { getFilter } from "../../redux/filterSlice";
+import { getFilter } from "../../redux/selectors";
 
 export default function SearchBox() {
   const SearchId = useId();
