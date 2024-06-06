@@ -1,20 +1,30 @@
-import css from "./Contact.module.css";
-import { FaUser, FaPhone } from "react-icons/fa6";
+import { IoMdContact } from "react-icons/io";
+import { FaPhoneAlt } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 
-export default function Contact({ data: { id, name, number }, onDelete }) {
+import css from "./Contact.module.css";
+
+import { deleteContact } from "../../redux/contactsSlice";
+
+export default function Contact({ userName, userNumber, id }) {
+  const dispatch = useDispatch();
+  function deleteHandler() {
+    dispatch(deleteContact(id));
+  }
+
   return (
-    <div className={css.contact}>
-      <div className={css.data}>
-        <div className={css.range}>
-          <FaUser />
-          <p className={css.p}>{name}</p>
-        </div>
-        <div className={css.range}>
-          <FaPhone />
-          <p className={css.p}>{number}</p>
-        </div>
-      </div>
-      <button type="button" className={css.btn} onClick={() => onDelete(id)}>
+    <div className={css.container}>
+      <ul>
+        <li className={css.listItem}>
+          <IoMdContact size={20} />
+          {userName}
+        </li>
+        <li className={css.listItem}>
+          <FaPhoneAlt size={20} />
+          {userNumber}
+        </li>
+      </ul>
+      <button className={css.btn} onClick={deleteHandler}>
         Delete
       </button>
     </div>
